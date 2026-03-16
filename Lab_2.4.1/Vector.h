@@ -4,40 +4,43 @@
 
 using namespace std;
 
-const int MAX_SIZE = 100;
+class Vector {
+private:
+    int* num;
+    int size;
 
-class Vector
-{
-private: 
-	int num[MAX_SIZE];
-	int size;
 public:
-	Vector();
-	Vector(int s, const int* arr);
-	Vector(const Vector& other);
-	~Vector() {};
+    Vector();
+    Vector(int s);
+    Vector(int s, const int* arr);
+    Vector(const Vector& other);
+    ~Vector();
 
-	int getSize() const { return size; }
-	int getElement(int index) const;
+    int getSize() const;
+    void setSize(int s);
+    int getElement(int index) const;
+    void setElement(int index, int value);
 
-	void setSize(int s);
-	void setElement(int index, int value);
+    double norm() const;
 
-	operator string() const;
-	Vector& operator = (const Vector&);
-	int& operator [] (int index);
- 
-	double norm() const;
-	Vector operator * (int scalar) const;
+    operator string() const;
+    Vector& operator=(const Vector& other);
+    int& operator[](int index);
 
-	friend bool operator == (const Vector& v1, const Vector& v2);
-	friend bool operator != (const Vector& v1, const Vector& v2);
-	friend bool operator > (const Vector& v1, const Vector& v2);
-	friend bool operator < (const Vector& v1, const Vector& v2);
-	friend bool operator >= (const Vector& v1, const Vector& v2);
-	friend bool operator <= (const Vector& v1, const Vector& v2);
+    Vector& operator++();       
+    Vector operator++(int);    
+    Vector& operator--();       
+    Vector operator--(int);
 
-	friend ostream& operator << (ostream& out, const Vector& v);
-	friend istream& operator >> (istream& in, Vector& v);
- };
+    Vector operator*(int scalar) const;
 
+    friend bool operator==(const Vector& v1, const Vector& v2);
+    friend bool operator!=(const Vector& v1, const Vector& v2);
+    friend bool operator>(const Vector& v1, const Vector& v2);
+    friend bool operator<(const Vector& v1, const Vector& v2);
+    friend bool operator>=(const Vector& v1, const Vector& v2);
+    friend bool operator<=(const Vector& v1, const Vector& v2);
+
+    friend ostream& operator<<(ostream& out, const Vector& v);
+    friend istream& operator>>(istream& in, Vector& v);
+};
